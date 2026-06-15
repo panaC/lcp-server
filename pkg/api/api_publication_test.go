@@ -174,7 +174,7 @@ func TestListPublications(t *testing.T) {
 			return
 		}
 		for idx, outPub := range list {
-			same := comparePublications(inPubs[idx], &outPub)
+			same := comparePublications(inPubs[len(inPubs)-1-idx], &outPub)
 			if !same {
 				t.Error("Failed to get the same content back")
 			}

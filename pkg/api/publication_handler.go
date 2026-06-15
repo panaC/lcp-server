@@ -58,8 +58,7 @@ func (a *APICtrl) SearchPublications(w http.ResponseWriter, r *http.Request) {
 			contentType = "application/pdf"
 		case "lcpdf":
 			contentType = "application/pdf+lcp"
-		case "lcpa":
-		case "lcpau":
+		case "lcpa", "lcpau":
 			contentType = "application/audiobook+lcp"
 		case "lcpdi":
 			contentType = "application/divina+lcp"
@@ -280,6 +279,9 @@ type PublicationResponse struct {
 // NewPublicationListResponse creates a rendered list of publications
 func NewPublicationListResponse(publications *[]stor.Publication) []render.Renderer {
 	list := []render.Renderer{}
+	if publications == nil {
+		return list
+	}
 	for i := 0; i < len(*publications); i++ {
 		list = append(list, NewPublicationResponse(&(*publications)[i]))
 	}
