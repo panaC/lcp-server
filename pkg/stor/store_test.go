@@ -117,13 +117,13 @@ func TestPublications(t *testing.T) {
 	}
 
 	// get publications by their format
-	var publications *[]Publication
+	var publications []Publication
 	contentType := "application/epub+zip"
 	publications, err = St.Publication().FindByType(contentType)
 	if err != nil {
 		t.Fatalf("Failed to get publications by their format: %v", err)
 	}
-	if len(*publications) != 2 {
+	if len(publications) != 2 {
 		t.Fatalf("Failed to get a 2 EPUB items: %v", err)
 	}
 
@@ -132,7 +132,7 @@ func TestPublications(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to list all publications: %v", err)
 	}
-	if len(*publications) == 0 {
+	if len(publications) == 0 {
 		t.Fatal("Failed to get a list of publications: empty list")
 	}
 
@@ -141,7 +141,7 @@ func TestPublications(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to list some publications: %v", err)
 	}
-	if len(*publications) == 0 {
+	if len(publications) == 0 {
 		t.Fatalf("Failed to get a list of publications: %v", err)
 	}
 

@@ -39,22 +39,22 @@ func (p *Publication) Validate() error {
 	return validate.Struct(p)
 }
 
-func (s publicationStore) ListAll() (*[]Publication, error) {
+func (s publicationStore) ListAll() ([]Publication, error) {
 	publications := []Publication{}
 	// security: limited to 1000 results, in descending order of ID to have a stable order
-	return &publications, s.db.Limit(1000).Order("id DESC").Find(&publications).Error
+	return publications, s.db.Limit(1000).Order("id DESC").Find(&publications).Error
 }
 
-func (s publicationStore) List(pageNum, pageSize int) (*[]Publication, error) {
+func (s publicationStore) List(pageNum, pageSize int) ([]Publication, error) {
 	publications := []Publication{}
 	// pageNum starts at 1
 	// result sorted to assure the same order for each request
-	return &publications, s.db.Offset((pageNum - 1) * pageSize).Limit(pageSize).Order("id DESC").Find(&publications).Error
+	return publications, s.db.Offset((pageNum - 1) * pageSize).Limit(pageSize).Order("id DESC").Find(&publications).Error
 }
 
-func (s publicationStore) FindByType(contentType string) (*[]Publication, error) {
+func (s publicationStore) FindByType(contentType string) ([]Publication, error) {
 	publications := []Publication{}
-	return &publications, s.db.Limit(1000).Find(&publications, "content_type= ?", contentType).Error
+	return publications, s.db.Limit(1000).Find(&publications, "content_type= ?", contentType).Error
 }
 
 func (s publicationStore) Count() (int64, error) {

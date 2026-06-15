@@ -23,7 +23,7 @@ func (a *APICtrl) ListPublications(w http.ResponseWriter, r *http.Request) {
 	page := r.Context().Value(PageKey).(int)
 	perPage := r.Context().Value(PerPageKey).(int)
 
-	var publications *[]stor.Publication
+	var publications []stor.Publication
 	var err error
 
 	if page == 0 || perPage == 0 {
@@ -45,7 +45,7 @@ func (a *APICtrl) ListPublications(w http.ResponseWriter, r *http.Request) {
 func (a *APICtrl) SearchPublications(w http.ResponseWriter, r *http.Request) {
 	log.Debug("Search Publications ")
 
-	var publications *[]stor.Publication
+	var publications []stor.Publication
 	var err error
 
 	// by format
@@ -277,13 +277,10 @@ type PublicationResponse struct {
 }
 
 // NewPublicationListResponse creates a rendered list of publications
-func NewPublicationListResponse(publications *[]stor.Publication) []render.Renderer {
+func NewPublicationListResponse(publications []stor.Publication) []render.Renderer {
 	list := []render.Renderer{}
-	if publications == nil {
-		return list
-	}
-	for i := 0; i < len(*publications); i++ {
-		list = append(list, NewPublicationResponse(&(*publications)[i]))
+	for i := 0; i < len(publications); i++ {
+		list = append(list, NewPublicationResponse(&publications[i]))
 	}
 	return list
 }

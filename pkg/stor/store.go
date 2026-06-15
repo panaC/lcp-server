@@ -40,9 +40,9 @@ type (
 
 	// PublicationRepository interface, defining publication operations
 	PublicationRepository interface {
-		ListAll() (*[]Publication, error)
-		List(pageNum, pageSize int) (*[]Publication, error)
-		FindByType(contentType string) (*[]Publication, error)
+		ListAll() ([]Publication, error)
+		List(pageNum, pageSize int) ([]Publication, error)
+		FindByType(contentType string) ([]Publication, error)
 		Count() (int64, error)
 		Get(uuid string) (*Publication, error)
 		GetByAltID(altID string) (*Publication, error)
