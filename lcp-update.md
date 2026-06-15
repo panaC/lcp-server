@@ -41,8 +41,6 @@ The diff adds a set of test scripts under `scripts/`:
 - `test-update-publication-lsd-license.sh`: regenerates a v2 publication with different bytes, updates `size` and `checksum`, fetches a fresh LCPL, and checks that the `rel="publication"` link contains the new `length`/`hash`.
 - `test-update-encrypted-publication-same-content-key.sh`: generates an encrypted v2 publication with the same content key, replaces the bytes served by the previous `href`, updates only `size`/`checksum`, publishes the fresh LCPL, and checks that semantic license data remains stable.
 - `test-lcp-update-demo-flow.sh`: runs the create step, pauses for a Thorium demo/import check, then runs the update step.
-- `demo-lcp-loan.sh`: simpler script for generating a complete demo loan.
-- `quickstart-lcpserver-sqlite.sh.bak`: work copy kept in the diff.
 
 ## Thorium Validation Scenario
 
